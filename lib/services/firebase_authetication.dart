@@ -30,13 +30,7 @@ Future<void> signIn(String email, password) async {
   print("Login uid : ${auth.currentUser!.uid}");
 }
 
-Future signOut() async {
-  try{
-    print("first ${auth.currentUser!.uid}");
-    return await auth.signOut();
-    //print("first ${auth.currentUser!.uid}");
-  }catch(error){
-    print("second ${auth.currentUser!.uid}");
-    return null;
-  }
+Future<void> signOut() async {
+  await auth.signOut();
+
 }

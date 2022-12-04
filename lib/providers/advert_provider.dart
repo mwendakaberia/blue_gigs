@@ -98,32 +98,37 @@ final userProvider = FutureProvider<User_Model>((ref) async {
 
   final userId = FirebaseAuth.instance.currentUser?.uid;
 
-  print("wwwwwwwwww");
+  if(userId==null){
+    user=User_Model(
+    );
+  }else{
+    print("wwwwwwwwww");
 
-  CollectionReference reference =
-      FirebaseFirestore.instance.collection("users");
+    CollectionReference reference =
+    FirebaseFirestore.instance.collection("users");
 
-  QuerySnapshot querySnapshot = await reference.get();
-  templist = querySnapshot.docs;
-  list = templist.map((DocumentSnapshot docSnapshot) {
-    return docSnapshot.data() as Map<dynamic, dynamic>;
-  }).toList();
+    QuerySnapshot querySnapshot = await reference.get();
+    templist = querySnapshot.docs;
+    list = templist.map((DocumentSnapshot docSnapshot) {
+      return docSnapshot.data() as Map<dynamic, dynamic>;
+    }).toList();
 
-  print('zzzzzzzzzzzz {{$list}}');
+    print('zzzzzzzzzzzz {{$list}}');
 
-  for (var item in list) {
-    print("ppppppppppp {{$item}}");
-    if (item["userId"] == userId) {
-      print("yyyyyyyyyyyy {{$item}}");
-      user = User_Model(
-        name: item['name'],
-        identity: item['identity'],
-        phone: item['contact'],
-        rating: item['rating'],
-        email: item['email'],
-      );
+    for (var item in list) {
+      print("ppppppppppp {{$item}}");
+      if (item["userId"] == userId) {
+        print("yyyyyyyyyyyy {{$item}}");
+        user = User_Model(
+          name: item['name'],
+          identity: item['identity'],
+          phone: item['contact'],
+          rating: item['rating'],
+          email: item['email'],
+        );
+      }
+      print("fffffffff");
     }
-    print("fffffffff");
   }
   print("The final identity is : ${user.identity}");
   return user;

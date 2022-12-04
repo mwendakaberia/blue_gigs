@@ -2,7 +2,6 @@ import 'package:easy_rent/pages/job_seeker.dart';
 import 'package:easy_rent/pages/job_upload.dart';
 import 'package:easy_rent/providers/advert_provider.dart';
 import 'package:easy_rent/screens/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -48,6 +47,30 @@ class NavDrawer extends StatelessWidget {
               ),
             },
           ),
+          // ListTile(
+          //   leading: Icon(Icons.settings),
+          //   title: Text('Settings'),
+          //   onTap: () => {Navigator.of(context).pop()},
+          // ),
+          Consumer(builder: (context, ref, child) {
+            return ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Logout'),
+              onTap: () {
+                print("third ${auth.currentUser!.uid}");
+                signOut().then(
+                  (value) async => {
+                    await ref.refresh(userProvider),
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ),
+                    ),
+                  },
+                );
+              },
+            );
+          }),
         ],
       ),
     );

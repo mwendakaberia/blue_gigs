@@ -3,6 +3,7 @@ import 'package:easy_rent/models/advert_model.dart';
 import 'package:easy_rent/models/user_model.dart';
 import 'package:easy_rent/pages/dropDownInput.dart';
 import 'package:easy_rent/providers/advert_provider.dart';
+import 'package:easy_rent/screens/login.dart';
 import 'package:easy_rent/services/firebase_authetication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -166,7 +167,7 @@ class _EmployerState extends State<Employer> {
       );
     }
 
-    Widget postDialog(Advert_Model post,User_Model user) {
+    Widget postDialog(Advert_Model post, User_Model user) {
       return Center(
         child: Padding(
           padding: EdgeInsets.all(25.0),
@@ -185,11 +186,10 @@ class _EmployerState extends State<Employer> {
                       child: Text("Hire"),
                       onPressed: () {
                         //showDialog(context: context, builder: (context)=>postDialog(post));
-                        final hire =
-                            ref.watch(hireProvider(post.user_id));
+                        final hire = ref.watch(hireProvider(post.user_id));
                         return hire.when(
                           data: (value) => {
-                          Navigator.of(context).pop(),
+                            Navigator.of(context).pop(),
                             print("value ${value.email}"),
                             showDialog(
                                 context: context,
@@ -240,8 +240,7 @@ class _EmployerState extends State<Employer> {
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                          "Rating : ${user.rating}"),
+                      child: Text("Rating : ${user.rating}"),
                     ),
                   ],
                 ),
@@ -298,13 +297,6 @@ class _EmployerState extends State<Employer> {
             Text(
               "Employer Page",
               textAlign: TextAlign.center,
-            ),
-            TextButton(
-              child: Text(
-                "Sign Out",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              onPressed: () => signOut(),
             ),
           ],
         ),
@@ -398,7 +390,8 @@ class _EmployerState extends State<Employer> {
                                     onTap: () => showDialog(
                                       context: context,
                                       builder: (context) => postDialog(
-                                        data[index],userdata,
+                                        data[index],
+                                        userdata,
                                       ),
                                     ),
                                   ),
