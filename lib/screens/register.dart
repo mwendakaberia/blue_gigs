@@ -212,21 +212,10 @@ class _registerScreenState extends State<registerScreen> {
                                   (value) {
                                     print("Stating");
                                     //user = await ref.watch(identityProvider).state,
-                                    final user = ref.watch(userProvider);
-                                    return user.when(
-                                      data: (data) {
-                                        Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                Homepage(),
-                                          ),
-                                        );
-                                      },
-                                      loading: () => Center(
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                      error: (e, s) => Center(
-                                        child: Text("An Error Occured"),
+                                    //final user = ref.watch(userProvider);
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => Homepage(),
                                       ),
                                     );
                                   },
