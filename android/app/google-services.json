@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1070543559433",
+    "project_id": "easy-rent-1537b",
+    "storage_bucket": "easy-rent-1537b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070543559433:android:73fcc64ca763e52735d1d8",
+        "android_client_info": {
+          "package_name": "com.example.easy_rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070543559433-ihj70joqj2nl95ek9prbum0gkm28brl6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG2V2DT5o4LrREOhaNXJbsXhYCABhBDZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070543559433-ihj70joqj2nl95ek9prbum0gkm28brl6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
