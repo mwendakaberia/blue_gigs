@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:easy_rent/models/advert_model.dart';
 
-final advertProvider = FutureProvider<List<Advert_Model>>((ref) async {
+final userJobsProvider = FutureProvider<List<Advert_Model>>((ref) async {
   List<Advert_Model> adverts = [];
   List<DocumentSnapshot> templist;
   List<Map<dynamic, dynamic>> list;
@@ -49,7 +49,7 @@ final advertProvider = FutureProvider<List<Advert_Model>>((ref) async {
   return adverts;
 });
 
-final tenantAdvertsList =
+final totalJobsProvider =
     FutureProvider.family<List<Advert_Model>, String>((ref, job) async {
   List<Advert_Model> totalAdverts = [];
   List<Map<dynamic, dynamic>> list;
@@ -150,7 +150,7 @@ final hireProvider = FutureProvider.family<User_Model, String>(
     });
     print("hello again");
 
-    var user;
+    late User_Model user;
     List<DocumentSnapshot> templist;
     List<Map<dynamic, dynamic>> list;
 

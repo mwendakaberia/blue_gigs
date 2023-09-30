@@ -19,7 +19,11 @@ Future<void> registerUser(String email, password, name, identity,contact) async 
       "contact":contact,
       "userId":userId,
       "email":email,
-      "rating":"0"
+      "rating":"0",
+      "location":"",
+      "details":"",
+      "imgUrl":"",
+
     });
     print("Third identity is ${identity}");
   }

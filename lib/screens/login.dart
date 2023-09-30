@@ -1,5 +1,5 @@
 import 'package:easy_rent/clippers/login_clipper.dart';
-import 'package:easy_rent/providers/advert_provider.dart';
+//import 'package:easy_rent/providers/firebase_providers.dart';
 import 'package:easy_rent/providers/control_providers.dart';
 import 'package:easy_rent/screens/register.dart';
 import 'package:easy_rent/services/firebase_authetication.dart';

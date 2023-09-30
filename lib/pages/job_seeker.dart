@@ -1,10 +1,12 @@
 import 'package:easy_rent/pages/job_update.dart';
 import 'package:easy_rent/pages/job_upload.dart';
 import 'package:easy_rent/pages/navigation_drawer.dart';
-import 'package:easy_rent/providers/advert_provider.dart';
+//import 'package:easy_rent/providers/firebase_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../providers/jobs_provider.dart';
 
 class JobSeeker extends StatelessWidget {
   const JobSeeker({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class JobSeeker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
+      drawer: NavDrawer(1),
       appBar: AppBar(
         title: Text(
           "Job Seeker",
@@ -21,7 +23,7 @@ class JobSeeker extends StatelessWidget {
       ),
       body: Consumer(
         builder: (context, ref, child) {
-          final advertAsync = ref.watch(advertProvider);
+          final advertAsync = ref.watch(totalJobsProvider(""));
           print("heyyyyyyyyyyy");
           return advertAsync.when(
             data: (adverts) {

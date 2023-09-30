@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_rent/pages/dropDownInput.dart';
 import 'package:easy_rent/pages/job_seeker.dart';
-import 'package:easy_rent/providers/advert_provider.dart';
+//import 'package:easy_rent/providers/firebase_providers.dart';
 import 'package:easy_rent/screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../providers/jobs_provider.dart';
 
 class UpdatePost extends StatefulWidget {
   final job, amount, currency, duration, upload_id;
@@ -195,7 +197,7 @@ class _UpdatePostState extends State<UpdatePost> {
                             ),
                             onPressed: () {
                               updatePost().then((value) async=> {
-                                await ref.refresh(advertProvider),
+                                await ref.refresh(totalJobsProvider("")),
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => JobSeeker(),),),
                               }).onError((error, stackTrace) => {
                                 ScaffoldMessenger.of(context).showSnackBar(

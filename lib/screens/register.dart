@@ -1,7 +1,7 @@
 import 'package:easy_rent/pages/dropDownInput.dart';
 import 'package:easy_rent/pages/employer.dart';
 import 'package:easy_rent/pages/job_seeker.dart';
-import 'package:easy_rent/providers/advert_provider.dart';
+import 'package:easy_rent/providers/firebase_providers.dart';
 import 'package:easy_rent/screens/home.dart';
 import 'package:easy_rent/services/firebase_authetication.dart';
 import 'package:flutter/material.dart';
