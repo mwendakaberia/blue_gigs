@@ -1,7 +1,9 @@
 import 'package:easy_rent/pages/employer.dart';
 import 'package:easy_rent/pages/job_seeker.dart';
 import 'package:easy_rent/pages/job_upload.dart';
+import 'package:easy_rent/pages/profile.dart';
 import 'package:easy_rent/pages/settings.dart';
+import 'package:easy_rent/providers/control_providers.dart';
 import 'package:easy_rent/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,10 +15,9 @@ class NavDrawer extends StatelessWidget {
   int role;
 
   NavDrawer(this.role);
+
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, ref, child) {
-      final user = ref.watch(userDetails(""));
       return Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -43,17 +44,23 @@ class NavDrawer extends StatelessWidget {
                 ),
               },
             ),
-            ListTile(
-              leading: Icon(Icons.verified_user),
-              title: Text('Profile'),
-              onTap: () => {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => this.role == 1 ? JobSeeker() : Employer(),
+            Consumer(builder: (context, ref, child) {
+              return ListTile(
+                leading: Icon(Icons.verified_user),
+                title: Text('Profile'),
+                onTap: () => {
+                  //ref.refresh(profile_provider).state,
+                  ref.watch(profile_provider).state = 1,
+                print("The second profile is ${ref.watch(profile_provider).state}"),
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Profile(this.role),
+                    ),
                   ),
-                ),
-              },
-            ),
+                },
+              );
+            }),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
@@ -61,12 +68,12 @@ class NavDrawer extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => Settings(
-                      url: user.imgUrl,
-                      location: user.location,
-                      details: user.details,
-                      name: user.name,
-                      phone: user.phone,
-                    ),
+                        // url: user.imgUrl,
+                        // location: user.location,
+                        // details: user.details,
+                        // name: user.name,
+                        // phone: user.phone,
+                        ),
                   ),
                 ),
               },
@@ -92,6 +99,5 @@ class NavDrawer extends StatelessWidget {
           ],
         ),
       );
-    });
   }
 }

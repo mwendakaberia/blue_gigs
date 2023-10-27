@@ -8,39 +8,42 @@ class DropdownInput extends StatelessWidget {
   final void Function(String?) onChanged;
 
   const DropdownInput({
-    this.hintText="Please select an Option",
-    this.options=const [],
+    this.hintText = "Please select an Option",
+    this.options = const [],
     required this.getLabel,
     required this.value,
     required this.onChanged,
-
   });
 
   @override
   Widget build(BuildContext context) {
-    return FormField<String>(
-        builder: (FormFieldState<String> state){
-          return InputDecorator(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
-                labelText: hintText,
-                //border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0),),
-              ),
-            isEmpty: value == "",
-            child: DropdownButtonHideUnderline(
-              child: DropdownButtonFormField<String>(
-                value: value,
-                isDense: true,
-                onChanged: onChanged,
-                items: options.map((String value){
-                  return DropdownMenuItem<String>(
-                    value: value,
-                      child: Text(getLabel(value)),);
-                }).toList(),
-              ),
+    return FormField<String>(builder: (FormFieldState<String> state) {
+      return InputDecorator(
+        decoration: InputDecoration(
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+          labelText: hintText,
+          border: InputBorder.none,
+          //border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0),),
+        ),
+        isEmpty: value == "",
+        child: DropdownButtonHideUnderline(
+          child: DropdownButtonFormField<String>(
+            decoration: InputDecoration(
+              border: InputBorder.none,
             ),
-          );
-        }
-    );
+            value: value,
+            isDense: true,
+            onChanged: onChanged,
+            items: options.map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(getLabel(value)),
+              );
+            }).toList(),
+          ),
+        ),
+      );
+    });
   }
 }

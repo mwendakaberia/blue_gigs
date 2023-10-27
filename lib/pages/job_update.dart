@@ -197,8 +197,9 @@ class _UpdatePostState extends State<UpdatePost> {
                             ),
                             onPressed: () {
                               updatePost().then((value) async=> {
-                                await ref.refresh(totalJobsProvider("")),
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => JobSeeker(),),),
+                                Navigator.of(context).pop(),
+                                // await ref.refresh(totalJobsProvider("")),
+                                // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => JobSeeker(),),),
                               }).onError((error, stackTrace) => {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_rent/functions/reusble_fuctionality.dart';
 import 'package:easy_rent/pages/dropDownInput.dart';
 import 'package:easy_rent/pages/employer.dart';
 import 'package:easy_rent/pages/job_seeker.dart';
@@ -32,6 +33,8 @@ class _UploadJobState extends State<UploadJob> {
   final aboutCtrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  final widgets = Widgets();
+
   Future savePost() async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -50,13 +53,13 @@ class _UploadJobState extends State<UploadJob> {
       "identityId" : widget.role == 2 ? "2": "1",
       "userId": userId,
     }).then((value) =>
-        showSnackBar("Speciality uploaded successful", Duration(seconds: 2)));
+        widgets.showSnackBar(context, "Speciality uploaded successful", Duration(seconds: 2)));
   }
 
-  showSnackBar(String snackText, Duration d) {
-    final snackBar = SnackBar(content: Text(snackText), duration: d);
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
+  // showSnackBar(String snackText, Duration d) {
+  //   final snackBar = SnackBar(content: Text(snackText), duration: d);
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  // }
 
   @override
   Widget build(BuildContext context) {
